@@ -10,6 +10,10 @@
   "license": "MIT",
   "dependencies": {
     "discord.js": "^12.5.1",
-    "dotenv": "^8.2.0"
+    "dotenv": "^8.2.0",
+    "mz": "^2.7.0"
+  },
+  "devDependencies": {
+    "@types/node": "^14.14.37"
   }
 }
