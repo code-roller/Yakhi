@@ -7,6 +7,7 @@ dotenv.config()
 
 yakhi.on("ready", () => {
     yakhi.user.setActivity("y! help all")
+    yakhi.user.setUsername("Yakhi")
 })
 
 yakhi.on("message", async message => {
