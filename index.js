@@ -5,9 +5,9 @@ const dotenv = require("dotenv")
 const yakhi = new d.Client()
 dotenv.config()
 
-yakhi.on("ready", () => {
-    yakhi.user.setUsername("Yakhi")
-    yakhi.user.setActivity("y! help all")
+yakhi.on("ready", async() => {
+    await yakhi.user.setUsername("Yakhi")
+    await yakhi.user.setActivity("y! help all")
 })
 
 yakhi.on("message", async message => {
