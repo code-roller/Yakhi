@@ -6,7 +6,6 @@ const yakhi = new d.Client()
 dotenv.config()
 
 yakhi.on("ready", async() => {
-    await yakhi.user.setUsername("Yakhi")
     await yakhi.user.setActivity("y! help all")
 })
 
