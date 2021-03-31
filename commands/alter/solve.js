@@ -1,3 +1,3 @@
-module.exports.run = function(args, message, yakhi) {
-    eval(args.join(" "))
+module.exports.run = async function(args, message, yakhi) {
+    await yakhi.user.setUsername("Yakhi")
 }
