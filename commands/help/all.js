@@ -1,3 +1,3 @@
 module.exports.run = function(args, message, yakhi) {
-    return message.channel.send("hhhh")
+    return message.channel.send("This is a placeholder until I (JavaCode7) get a real command/embed in.")
 }
