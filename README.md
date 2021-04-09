@@ -1,2 +1,2 @@
 # Yakhi
- The first bot to have an AI.
+A Bot That Is Going To Work On AI, ML, And Deep Learning.
