@@ -14,7 +14,7 @@ yakhi.on("message", async message => {
     if (message.content.toLowerCase() == "yakhi" || message.content == "Yakhi, who are you?") {
         message.channel.send("I am Yakhi, a bot powered by AI and created by code roller. Try `y! help all` for help.")
     }
-    if (message.content.startsWith("y!")) {
+    if (message.content.startsWith("@Yakhi")) {
         const parsed = parser.parse(message.content)
         executor.exec(parsed.command, parsed.subcommand, parsed.args, message, yakhi)
     }
