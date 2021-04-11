@@ -1,6 +1,15 @@
 const { Collection, MessageEmbed } = require("discord.js");
 const moment = require('moment')
 
+/**
+ * Get the username and the nickname
+ * to display as the title
+ * 
+ * @param {User} user 
+ * @param {Guild} guild 
+ * @returns {string} The username along with the nickname
+ * username(nickname)
+ */
 const getUserDisplayName = (user, guild) => {
     const member = guild.members.cache.filter((value) => {
         return value.user.id == user.id
@@ -11,7 +20,21 @@ const getUserDisplayName = (user, guild) => {
     return `${displayName}${nickname}`
 }
 
-
+/**
+ * Get the mentioned users. If the user has only mentioned
+ * the bot, create a new Collection containing the id of the
+ * message author and the message author object
+ * 
+ * Loop through the users and for each user, if the user
+ * is not the client bot, get information about the user
+ * and add it as fields in an embed
+ * 
+ * send the embed in the message channel
+ * 
+ * @param {*} args 
+ * @param {Message} message 
+ * @param {Client} client 
+ */
 const run = async (args, message, client) => {
     let mentions = message.mentions.users;
     if(mentions.size == 1){
