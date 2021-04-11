@@ -1,23 +1,29 @@
-const d = require("discord.js")
+const discord = require("discord.js")
 const parser = require("./parse.js")
 const executor = require("./execute.js")
 const dotenv = require("dotenv")
-const yakhi = new d.Client()
+const client = new discord.Client()
 dotenv.config()
 
-yakhi.on("ready", async() => {
-    await yakhi.user.setActivity("y! help all")
+const isBotCommand = (message) => {
+    return Array.from(message.mentions.users.keys()).includes(client.user.id)
+}
+
+client.on("ready", async() => {
+    console.log("The bot has started")
+    await client.user.setActivity("y! help all")
 })
 
-yakhi.on("message", async message => {
+client.on("message", async message => {
     if (message.author.bot || message.channel.type === "dm") return
-    if (message.content.toLowerCase() == "yakhi" || message.content == "Yakhi, who are you?") {
+    if (message.content.toLowerCase() == "client" || message.content == "client, who are you?") {
         message.channel.send("I am Yakhi, a bot powered by AI and created by code roller. Try `y! help all` for help.")
     }
-    if (message.content.startsWith("@Yakhi")) {
+
+    if (isBotCommand(message)) {
         const parsed = parser.parse(message.content)
         executor.exec(parsed.command, parsed.subcommand, parsed.args, message, yakhi)
     }
 })
 
-yakhi.login(process.env.TOKEN)
+client.login(process.env.TOKEN)
