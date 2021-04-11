@@ -22,7 +22,7 @@ client.on("message", async message => {
 
     if (isBotCommand(message)) {
         const parsed = parser.parse(message.content)
-        executor.exec(parsed.command, parsed.subcommand, parsed.args, message, yakhi)
+        executor.exec(parsed.command, parsed.subcommand, parsed.args, message, client)
     }
 })
 
