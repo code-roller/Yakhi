@@ -1,6 +1,8 @@
+const { Collection } = require('discord.js')
+
 const run = async (args, message, client) => {
     let mentions = message.mentions.users
-    if(mentions.size == 0){
+    if(mentions.size == 1){
         mentions = new Collection([
             [message.author.id, message.author]
         ])

@@ -11,6 +11,7 @@
   "dependencies": {
     "discord.js": "^12.5.1",
     "dotenv": "^8.2.0",
+    "moment": "^2.29.1",
     "mz": "^2.7.0"
   },
   "devDependencies": {
