@@ -33,9 +33,9 @@ const run = async (args, message, client) => {
             embed.addField(":red_square: Bot", value.bot ? "Yeah" : "Nope", true)
             embed.addField(":bust_in_silhouette: Tag", `${value.username}#${value.discriminator}`, true)
             embed.addField(":crown: Owner", value.id == message.guild.ownerID ? "Yeah" : "Nope", true)
-            embed.addField("Game:", `${value.presence.game ? user.presence.game.name : 'None'}`, true)
-            embed.addField("Joined The Server On:", `${moment.utc(member.joinedAt).format("dddd, MMMM Do YYYY")}`, true)
-            embed.addField("Account Created On:", `${moment.utc(value.createdAt).format("dddd, MMMM Do YYYY")}`, true) 
+            embed.addField(":video_game: Game", `${value.presence.game ? user.presence.game.name : 'None'}`, true)
+            embed.addField(":date: Joined The Server On", `${moment.utc(member.joinedAt).format("dddd, MMMM Do YYYY")}`, true)
+            embed.addField(":calendar_spiral: Account Created On", `${moment.utc(value.createdAt).format("dddd, MMMM Do YYYY")}`, true) 
             embed.setFooter(`Replying to ${message.author.username}#${message.author.discriminator}`)
 
             message.channel.send(embed).then(() => {
