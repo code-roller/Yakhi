@@ -37,18 +37,18 @@ const getUserDisplayName = (user, guild) => {
  */
 const run = async (args, message, client) => {
     let mentions = message.mentions.users;
-    if(mentions.size == 1){
+    if (mentions.size == 1) {
         mentions = new Collection([
             [message.author.id, message.author]
         ])
     }
-    
+
     mentions.forEach((value) => {
         const isClient = value.id == client.user.id
         const member = message.guild.members.cache.filter((data) => {
             return data.user.id == value.id
         }).first()
-        if(!isClient){
+        if (!isClient) {
             const embed = new MessageEmbed()
             embed.setTitle(getUserDisplayName(value, message.guild))
             embed.setColor("#3C4165")
@@ -58,7 +58,7 @@ const run = async (args, message, client) => {
             embed.addField(":crown: Owner", value.id == message.guild.ownerID ? "Yeah" : "Nope", true)
             embed.addField(":video_game: Game", `${value.presence.game ? user.presence.game.name : 'None'}`, true)
             embed.addField(":date: Joined The Server On", `${moment.utc(member.joinedAt).format("dddd, MMMM Do YYYY")}`, true)
-            embed.addField(":calendar_spiral: Account Created On", `${moment.utc(value.createdAt).format("dddd, MMMM Do YYYY")}`, true) 
+            embed.addField(":calendar_spiral: Account Created On", `${moment.utc(value.createdAt).format("dddd, MMMM Do YYYY")}`, true)
             embed.setFooter(`Replying to ${message.author.username}#${message.author.discriminator}`)
 
             message.channel.send(embed).then(() => {

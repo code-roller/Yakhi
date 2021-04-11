@@ -1,7 +1,7 @@
 const fs = require("mz/fs")
 const d = require("discord.js")
 
-module.exports.exec = function(command, subcommand, args, message, yakhi) {
+module.exports.exec = function (command, subcommand, args, message, yakhi) {
     fs.readdir(`./commands/${command}/`, (err, files) => {
         if (err) {
             console.log(err)

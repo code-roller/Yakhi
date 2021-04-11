@@ -23,8 +23,8 @@ const createEmbed = (title, color, description, author, fields, thumbnail, url, 
     embed.setThumbnail(thumbnail)
     embed.setURL(url)
     embed.addFields(fields)
-    
-    if(timestamp){
+
+    if (timestamp) {
         embed.setTimestamp()
     }
     return embed

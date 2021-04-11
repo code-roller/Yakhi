@@ -1,6 +1,6 @@
 const djs = require("discord.js");
 
-module.exports.run = async(args, message, yakhi) => {
+module.exports.run = async (args, message, yakhi) => {
     var body = "";
     const emojis = [
         "🇦",

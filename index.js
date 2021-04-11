@@ -9,7 +9,7 @@ const isBotCommand = (message) => {
     return Array.from(message.mentions.users.keys()).includes(client.user.id)
 }
 
-client.on("ready", async() => {
+client.on("ready", async () => {
     console.log("The bot has started")
     await client.user.setActivity("y! help all")
 })

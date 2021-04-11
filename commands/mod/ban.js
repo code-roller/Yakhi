@@ -1,18 +1,18 @@
-module.exports.run = function(args, message, yakhi) {
-    if (message.member.hasPermission('ADMINISTRATOR') || message.member.hasPermission('BAN_MEMBERS')){
+module.exports.run = function (args, message, yakhi) {
+    if (message.member.hasPermission('ADMINISTRATOR') || message.member.hasPermission('BAN_MEMBERS')) {
         const target = message.mentions.users.first()
-        if (target){
+        if (target) {
             const targetMember = message.mentions.guild.members.cache.get(target.id)
-            if (target.id === targetMember){
+            if (target.id === targetMember) {
                 return message.channel.send(`<@${message.author.id}> Please specify someone in the server to ban.`)
-            }else{
+            } else {
                 targetMember.ban()
                 return message.channel.send(`<@${target}> Has been banned.`)
             }
-        }else{
+        } else {
             return message.channel.send(`<@${message.author.id}> Please specify someone to ban.`)
         }
-    }else{
+    } else {
         return message.channel.send(`<@${message.author.id}> You do not have permission to use this command.`)
     }
 }
