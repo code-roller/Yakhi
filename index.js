@@ -1,3 +1,4 @@
+// @ts-check
 
 const discord = require("discord.js")
 const parser = require("./parse.js")
@@ -25,7 +26,12 @@ client.on("message", async message => {
         const parsed = parser.parse(message.content)
         executor.exec(parsed.command, parsed.subcommand, parsed.args, message, client)
     } else {
-        console.log(message.mentions)
+        const mentionedEveryone = message.mentions.everyone
+        if(mentionedEveryone){
+            await message.delete().then((deletedMessage) => {
+                deletedMessage.author.send("Please do not ping everyone :neutral_face:")
+            })
+        }
     }
 })
 
