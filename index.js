@@ -3,17 +3,20 @@
 const discord = require("discord.js")
 const parser = require("./parse.js")
 const executor = require("./execute.js")
-const dotenv = require("dotenv")
+const dotenv = require("dotenv").config()
 const client = new discord.Client()
-dotenv.config()
+
+const token = process.env.TOKEN
+const announce = process.env.ANNOUNCEMENT_CHANNEL_ID
+const admin = process.env.ADMIN_ROLE_ID
 
 const isBotCommand = (message) => {
-    return message.content.startsWith("yakhi.")
+    return message.content.startsWith("yakhi ")
 }
 
 client.on("ready", async () => {
     console.log("The bot has started")
-    await client.user.setActivity("yakhi.help.all")
+    await client.user.setActivity("yakhi help all")
 })
 
 client.on("message", async message => {
@@ -35,4 +38,6 @@ client.on("message", async message => {
     }
 })
 
-client.login(process.env.TOKEN)
+client.login(token)
+
+module.exports = { token, announce, admin }
