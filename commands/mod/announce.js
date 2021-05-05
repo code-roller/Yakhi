@@ -10,7 +10,7 @@ const { getRandomColor } = require('../../utils/embeds.js')
  * @param {discord.Message} message 
  * @param {discord.Client} client 
  */
-function run(args, message, client){
+function run(args, message, client) {
     /** @type {string} */
     const messageText = args.join(" ")
     const announcementChannel = message.guild.channels.cache.get(announce)
@@ -22,8 +22,8 @@ function run(args, message, client){
 
     const match = message.member.roles.cache.filter((memberRole) => {
         return memberRole.id == role.id
-    }) 
-    if(match.size == 0){
+    })
+    if (match.size == 0) {
         const exception = new Exception("You do not have permissions to create announcements", message, true)
     } else {
         const data = new discord.MessageEmbed()
@@ -35,4 +35,4 @@ function run(args, message, client){
     }
 }
 
-module.exports = {run}
+module.exports = { run }

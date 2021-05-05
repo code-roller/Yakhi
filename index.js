@@ -6,10 +6,30 @@ const executor = require("./execute.js")
 const dotenv = require("dotenv").config()
 const client = new discord.Client()
 
+/**
+ * Environment variables loaded from
+ * the .env file using the dotenv module.
+ * All these variables are added to the
+ * process environment variable
+ */
 const token = process.env.TOKEN
+
+// The id of the announcement channel for
+// yakhi mod announce <announcement>
 const announce = process.env.ANNOUNCEMENT_CHANNEL_ID
+
+// the administrator role id
 const admin = process.env.ADMIN_ROLE_ID
 
+/**
+ * @constant
+ * 
+ * Checks if the message if a bot command
+ * 
+ * @param {discord.Message} message 
+ * @returns {boolean} Whether or not the message content
+ * is a valid bot command
+ */
 const isBotCommand = (message) => {
     return message.content.startsWith("yakhi ")
 }
@@ -30,7 +50,10 @@ client.on("message", async message => {
         executor.exec(parsed.command, parsed.subcommand, parsed.args, message, client)
     } else {
         const mentionedEveryone = message.mentions.everyone
-        if(mentionedEveryone){
+        if (mentionedEveryone) {
+            // delete the message if the user pings
+            // @everyone(All the server members).
+            // This can be used to prevent spams and raids
             await message.delete().then((deletedMessage) => {
                 deletedMessage.author.send("Please do not ping everyone :neutral_face:")
             })
