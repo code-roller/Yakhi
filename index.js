@@ -21,6 +21,18 @@ const announce = process.env.ANNOUNCEMENT_CHANNEL_ID
 // the administrator role id
 const admin = process.env.ADMIN_ROLE_ID
 
+const yakhiMessage = (message) => {
+    message.channel.send(':slight_smile:').then((messageData) => {
+      setTimeout(() => {
+        messageData.edit(':wink:').then((editMessage) => {
+          setTimeout(() => {
+            editMessage.edit(':slight_smile:');
+          }, 200);
+        });
+      }, 500);
+    });
+  };
+
 /**
  * @constant
  * 
@@ -57,6 +69,8 @@ client.on("message", async message => {
             await message.delete().then((deletedMessage) => {
                 deletedMessage.author.send("Please do not ping everyone :neutral_face:")
             })
+        } else if(message.content.toLowerCase().includes("yakhi")){
+            yakhiMessage(message)
         }
     }
 })
