@@ -39,9 +39,7 @@ class Exception {
         }
 
         // @ts-ignore
-        await this.message.delete((deletedMessage) => {
-            deletedMessage.channel.send(embed)
-        })
+        await this.message.channel.send(embed)
     }
 }
 
