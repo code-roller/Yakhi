@@ -11,7 +11,7 @@ const { getRandomColor } = require('../../utils/embeds.js')
  * @param {string} color The color of the embed
  * @returns {discord.MessageEmbed} The created discord embed
  */
-const messageEmbed = (title, description, color) => {
+const messageEmbed = (title, description, color="#D7000C") => {
     /** @type {discord.MessageEmbed} */
     const embed = new discord.MessageEmbed()
     embed.setColor(color)
@@ -93,4 +93,4 @@ function run(args, message, client) {
     }
 }
 
-module.exports = { run }
+module.exports = { run, messageEmbed }
