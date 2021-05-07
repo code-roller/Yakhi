@@ -69,9 +69,7 @@ client.on("message", async message => {
             await message.delete().then((deletedMessage) => {
                 deletedMessage.author.send("Please do not ping everyone :neutral_face:")
             })
-        } else if(message.content.toLowerCase().includes("yakhi")){
-            yakhiMessage(message)
-        }
+        } 
     }
 })
 
