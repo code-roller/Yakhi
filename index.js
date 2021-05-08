@@ -5,6 +5,9 @@ const parser = require("./parse.js")
 const executor = require("./execute.js")
 const { expandUrl } = require("./utils/expand.js")
 const dotenv = require("dotenv").config()
+const express = require('express')
+const { join } = require("path")
+
 const client = new discord.Client()
 
 function extractTextLinks(message) {
@@ -19,7 +22,12 @@ function extractTextLinks(message) {
  * process environment variable
  */
 const token = process.env.TOKEN
+const port = process.env.PORT || 3000
 
+const app = express()
+app.get("/", (request, response) => {
+  response.sendFile(join(__dirname, "views", "index.html"))
+})
 
 
 const yakhiMessage = (message) => {
@@ -81,5 +89,9 @@ client.on("message", async message => {
 })
 
 client.login(token)
+
+app.listen(port, () => {
+  console.log(`Check out ${port}`);
+})
 
 module.exports = { token }
