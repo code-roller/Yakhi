@@ -20,12 +20,7 @@ function extractTextLinks(message) {
  */
 const token = process.env.TOKEN
 
-// The id of the announcement channel for
-// yakhi mod announce <announcement>
-const announce = process.env.ANNOUNCEMENT_CHANNEL_ID
 
-// the administrator role id
-const admin = process.env.ADMIN_ROLE_ID
 
 const yakhiMessage = (message) => {
     message.channel.send(':slight_smile:').then((messageData) => {
@@ -87,4 +82,4 @@ client.on("message", async message => {
 
 client.login(token)
 
-module.exports = { token, announce, admin }
+module.exports = { token }

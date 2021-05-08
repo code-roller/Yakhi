@@ -1,7 +1,6 @@
 // @ts-check
 const discord = require('discord.js')
 const Exception = require('../../exception.js')
-const { announce, admin } = require('../../index.js')
 const { getRandomColor } = require('../../utils/embeds.js')
 
 /**
@@ -13,17 +12,10 @@ const { getRandomColor } = require('../../utils/embeds.js')
 function run(args, message, client) {
     /** @type {string} */
     const messageText = args.join(" ")
-    const announcementChannel = message.guild.channels.cache.get(announce)
+    // const announcementChannel = message.guild.channels.cache.get(announce)
+    const announcementChannel = message.guild.systemChannel
 
-    // @ts-ignore
-    let role = message.guild.roles.cache.filter((guildRole) => {
-        return guildRole.id == admin.trim()
-    }).first()
-
-    const match = message.member.roles.cache.filter((memberRole) => {
-        return memberRole.id == role.id
-    })
-    if (match.size == 0) {
+    if (!message.member.hasPermission("ADMINISTRATOR")) {
         const exception = new Exception("You do not have permissions to create announcements", message, true)
     } else {
         const data = new discord.MessageEmbed()
