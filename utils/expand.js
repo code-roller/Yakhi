@@ -7,13 +7,13 @@ const { Message, MessageEmbed } = require('discord.js')
 const { getRandomColor } = require('./embeds')
 
 function expandUrlException(message, url) {
-    message.channel.send(messageEmbed(
-        "Error with url",
-        `${url} not a valid url`
-    ))
+  message.channel.send(messageEmbed(
+    "Error with url",
+    `${url} not a valid url`
+  ))
 }
 
-function expandUrl(url , discord, message) {
+function expandUrl(url, discord, message) {
   // validate the urls
   if (url == undefined) {
     return expandUrlException(message)
@@ -36,19 +36,19 @@ function expandUrl(url , discord, message) {
       (response) => {
         const expandedUrl = response.headers.location || url;
         console.log(expandedUrl)
-        if(discord){
-            if(message.member.hasPermission("ADMINISTRATOR")){
-                return null
-            }
-            if(expandedUrl.startsWith("https://discord.com")){
-                message.author.send("Do not send discord links in the server")
-                message.delete().then((messageData) => {
-
-                }).catch((exception) => {
-
-                })
-            }
+        if (discord) {
+          if (message.member.hasPermission("ADMINISTRATOR")) {
             return null
+          }
+          if (expandedUrl.startsWith("https://discord.com")) {
+            message.author.send("Do not send discord links in the server")
+            message.delete().then((messageData) => {
+
+            }).catch((exception) => {
+
+            })
+          }
+          return null
         }
 
         const embed = new MessageEmbed()
@@ -57,7 +57,7 @@ function expandUrl(url , discord, message) {
         const embedUrl = "`" + url + "'"
         const expandedUrlembed = "*'" + expandedUrl + "'*"
         embed.setDescription(
-            `
+          `
             The expanded url is ${expandedUrlembed}
             `
         )
