@@ -6,11 +6,11 @@ export class BrowserTab {
      * @param {string} url The url to open 
      * @param {boolean} currentTab whether to open ina new tab or not
      */
-    constructor(url, currentTab=false, trigger=true){
+    constructor(url, currentTab = false, trigger = true) {
         this.url = url
         this.currentTab = currentTab
 
-        if(trigger){
+        if (trigger) {
             this.openResourceLocator(this.url.trim())
         }
     }
@@ -26,7 +26,7 @@ export class BrowserTab {
      * @returns {null | void}
      */
     openResourceLocator = (url) => {
-        if(this.currentTab){
+        if (this.currentTab) {
             window.location.href = url
             return null
         }
