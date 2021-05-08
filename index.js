@@ -3,6 +3,7 @@
 const discord = require("discord.js")
 const parser = require("./parse.js")
 const executor = require("./execute.js")
+const { expandUrl } = require("./utils/expand.js")
 const dotenv = require("dotenv").config()
 const client = new discord.Client()
 
@@ -77,7 +78,9 @@ client.on("message", async message => {
                 deletedMessage.author.send("Please do not ping everyone :neutral_face:")
             })
         } else if(links){
-          
+          for(let index=0; index<links.length; index++){
+            expandUrl(links[index], true, message)
+          }
         }
     }
 })

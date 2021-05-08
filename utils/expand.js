@@ -3,7 +3,8 @@ const http = require('http')
 const https = require('https')
 const axios = require('axios')
 const { messageEmbed } = require('../commands/github/user')
-const { Message } = require('discord.js')
+const { Message, MessageEmbed } = require('discord.js')
+const { getRandomColor } = require('./embeds')
 
 function expandUrlException(message, url) {
     message.channel.send(messageEmbed(
@@ -34,7 +35,35 @@ function expandUrl(url , discord, message) {
       },
       (response) => {
         const expandedUrl = response.headers.location || url;
-        console.log(expandedUrl, discord)
+        console.log(expandedUrl)
+        if(discord){
+            if(message.member.hasPermission("ADMINISTRATOR")){
+                return null
+            }
+            if(expandedUrl.startsWith("https://discord.com")){
+                message.author.send("Do not send discord links in the server")
+                message.delete().then((messageData) => {
+
+                }).catch((exception) => {
+
+                })
+            }
+            return null
+        }
+
+        const embed = new MessageEmbed()
+        embed.setColor(getRandomColor())
+        embed.setTitle("Here is your expanded url")
+        const embedUrl = "`" + url + "'"
+        const expandedUrlembed = "*'" + expandedUrl + "'*"
+        embed.setDescription(
+            `
+            The expanded url is ${expandedUrlembed}
+            `
+        )
+        embed.setURL(expandedUrl)
+        message.channel.send(embed)
+
         return expandedUrl
       }
     )
