@@ -6,6 +6,11 @@ const executor = require("./execute.js")
 const dotenv = require("dotenv").config()
 const client = new discord.Client()
 
+function extractTextLinks(message) {
+  const regex = /(https?:\/\/(?:www\.|(?!www))[^\s\.]+\.[^\s]{2,}|www\.[^\s]+\.[^\s]{2,})/gi;
+  return message.match(regex)
+}
+
 /**
  * Environment variables loaded from
  * the .env file using the dotenv module.
@@ -62,6 +67,8 @@ client.on("message", async message => {
         executor.exec(parsed.command, parsed.subcommand, parsed.args, message, client)
     } else {
         const mentionedEveryone = message.mentions.everyone
+        const links = extractTextLinks(message.content)
+
         if (mentionedEveryone) {
             // delete the message if the user pings
             // @everyone(All the server members).
@@ -69,7 +76,9 @@ client.on("message", async message => {
             await message.delete().then((deletedMessage) => {
                 deletedMessage.author.send("Please do not ping everyone :neutral_face:")
             })
-        } 
+        } else if(links){
+          
+        }
     }
 })
 
