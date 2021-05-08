@@ -4,7 +4,7 @@ const { default: axios } = require("axios")
 const { MessageEmbed } = require("discord.js")
 const { messageEmbed } = require('../github/user.js')
 
-function articles(message){
+function articles(message) {
     /** @type {string} */
     const api = "https://dev.to/api/articles?top=1"
     axios.get(api).then((response) => {
@@ -31,6 +31,6 @@ function articles(message){
     })
 }
 
-module.exports.run = function(args, message, client) {
+module.exports.run = function (args, message, client) {
     articles(message)
 }
