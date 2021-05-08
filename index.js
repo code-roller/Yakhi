@@ -24,9 +24,12 @@ function extractTextLinks(message) {
 const token = process.env.TOKEN
 const port = process.env.PORT || 3000
 
+
 const app = express()
+app.use(express.static(join(__dirname ,'views')))
+
 app.get("/", (request, response) => {
-  response.sendFile(join(__dirname, "views", "index.html"))
+  response.sendFile("index.html")
 })
 
 
