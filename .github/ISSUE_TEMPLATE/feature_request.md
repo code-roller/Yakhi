@@ -1,10 +1,9 @@
 ---
 name: Feature request
 about: Suggest an idea for this project
-title: 'Feature Request : [Feature]'
+title: "Feature Request : [Feature]"
 labels: enhancement
 assignees: NealSanthosh, pranavbaburaj, JavaCode7
-
 ---
 
 **Is your feature request related to a problem? Please describe.**
