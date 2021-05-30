@@ -34,14 +34,14 @@ app.get("/", (request, response) => {
 
 // Get the number of servers the bot is working in
 const getClientGuildCount = () => {
-  return client.guilds.cache.size
-}
+  return client.guilds.cache.size;
+};
 
-app.get('/count', (request, response) => {
+app.get("/count", (request, response) => {
   response.json({
-    count : getClientGuildCount()
-  })
-})
+    count: getClientGuildCount(),
+  });
+});
 
 const yakhiMessage = (message) => {
   message.channel.send(":slight_smile:").then((messageData) => {
@@ -70,16 +70,15 @@ const isBotCommand = (message) => {
 
 client.on("ready", async () => {
   console.log("The bot has started");
-  const botGuildCount = client.guilds.cache.size
+  const botGuildCount = client.guilds.cache.size;
   await client.user.setPresence({
-    activity : {
-      name : `Watching ${botGuildCount} servers`,
-      type : 'PLAYING',
-    }
-  })
-  await client.user.setStatus('idle');
-  console.log(client)
-
+    activity: {
+      name: `Watching ${botGuildCount} servers`,
+      type: "PLAYING",
+    },
+  });
+  await client.user.setStatus("idle");
+  console.log(client);
 });
 
 client.on("message", async (message) => {
@@ -105,7 +104,8 @@ client.on("message", async (message) => {
   } else {
     const mentionedEveryone = message.mentions.everyone;
     const links = extractTextLinks(message.content);
-    const warnUser = !message.member.hasPermission('ADMINISTRATOR') && mentionedEveryone;
+    const warnUser =
+      !message.member.hasPermission("ADMINISTRATOR") && mentionedEveryone;
 
     if (warnUser) {
       // delete the message if the user pings
