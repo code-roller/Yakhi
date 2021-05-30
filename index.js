@@ -32,6 +32,17 @@ app.get("/", (request, response) => {
   response.sendFile("index.html");
 });
 
+// Get the number of servers the bot is working in
+const getClientGuildCount = () => {
+  return client.guilds.cache.size
+}
+
+app.get('/count', (request, response) => {
+  response.json({
+    count : client.guilds.cache.size
+  })
+})
+
 const yakhiMessage = (message) => {
   message.channel.send(":slight_smile:").then((messageData) => {
     setTimeout(() => {
@@ -59,9 +70,9 @@ const isBotCommand = (message) => {
 
 client.on("ready", async () => {
   console.log("The bot has started");
-  await client.user.setActivity("yakhi help all");
+  const botGuildCount = client.guilds.cache.size
+  await client.user.setActivity(`Watching ${botGuildCount} servers`);
 });
-
 client.on("message", async (message) => {
   if (message.author.bot || message.channel.type === "dm") return;
   if (
