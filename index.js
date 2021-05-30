@@ -39,7 +39,7 @@ const getClientGuildCount = () => {
 
 app.get('/count', (request, response) => {
   response.json({
-    count : client.guilds.cache.size
+    count : getClientGuildCount()
   })
 })
 
@@ -71,8 +71,17 @@ const isBotCommand = (message) => {
 client.on("ready", async () => {
   console.log("The bot has started");
   const botGuildCount = client.guilds.cache.size
-  await client.user.setActivity(`Watching ${botGuildCount} servers`);
+  await client.user.setPresence({
+    activity : {
+      name : `Watching ${botGuildCount} servers`,
+      type : 'PLAYING',
+    }
+  })
+  await client.user.setStatus('idle');
+  console.log(client)
+
 });
+
 client.on("message", async (message) => {
   if (message.author.bot || message.channel.type === "dm") return;
   if (
@@ -96,8 +105,9 @@ client.on("message", async (message) => {
   } else {
     const mentionedEveryone = message.mentions.everyone;
     const links = extractTextLinks(message.content);
+    const warnUser = !message.member.hasPermission('ADMINISTRATOR') && mentionedEveryone;
 
-    if (mentionedEveryone) {
+    if (warnUser) {
       // delete the message if the user pings
       // @everyone(All the server members).
       // This can be used to prevent spams and raids
