@@ -3,13 +3,13 @@ const d = require("discord.js");
 
 module.exports.exec = function (command, subcommand, args, message, yakhi) {
   fs.readdir(`./commands/${command}/`, (err, files) => {
-    if (err) {
+    if (err) {                                                                   
       console.log(err);
     } else {
       if (files.includes(subcommand + ".js")) {
         require(`./commands/${command}/${subcommand}.js`).run(
           args,
-          message,
+          message,                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
           yakhi
         );
       } else {
