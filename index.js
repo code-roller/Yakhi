@@ -7,7 +7,6 @@ const { expandUrl } = require("./utils/expand.js");
 const dotenv = require("dotenv").config();
 const express = require("express");
 const { join } = require("path");
-
 const client = new discord.Client();
 
 function extractTextLinks(message) {
@@ -31,6 +30,10 @@ app.use(express.static(join(__dirname, "views")));
 app.get("/", (request, response) => {
   response.sendFile("index.html");
 });
+
+app.get('/join',(request,response) => {
+  response.sendFile(join(__dirname,"views","join.html"))
+})
 
 // Get the number of servers the bot is working in
 const getClientGuildCount = () => {
