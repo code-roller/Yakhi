@@ -69,4 +69,4 @@ client.on("message", async message => {
 
 require('./server')();
 
-client.login("ODIxOTgzNTI3NjQ1MDg1Njk2.YFLp0A.omn21zNVs88yrjcXlexiRnzWWNQ");
+client.login("process.env.TOKEN");
