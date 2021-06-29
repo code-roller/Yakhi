@@ -19,6 +19,7 @@
     <img src="https://badges.frapsoft.com/os/v1/open-source.svg?v=103">
     <img src="https://img.shields.io/github/last-commit/code-roller/Yakhi">
     <img src="https://tokei.rs/b1/github/code-roller/Yakhi">
+  <h1>NOTE: to use the music and the chatbot you need to take the folder that named music and chatbot and make it in another folder</h1>
   </p>
   <br />
 
