@@ -1,6 +1,6 @@
 <p align="center">
   <img src="https://raw.githubusercontent.com/code-roller/Yakhi/main/assets/Yakhi%20Logo.png" aly="logo" height=155>
-  <h3 align="center">Yakhi</h3>
+  <h3 align="center">Yakhi [Archived]</h3>
 
   <p align="center">
     The code-roller discord bot 🙂
